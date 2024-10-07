@@ -1,5 +1,6 @@
 package com.example.practice;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.auth.User;
 
 public class sign_up extends AppCompatActivity {
 
@@ -38,7 +40,7 @@ public class sign_up extends AppCompatActivity {
             if (!email.isEmpty() && !enteredPassword.isEmpty()) {
                 handleLogin(email, enteredPassword);
             } else {
-                Toast.makeText(LoginActivity.this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(sign_up.this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -55,12 +57,12 @@ public class sign_up extends AppCompatActivity {
                         if (!querySnapshot.isEmpty()) {
                             // Get the first matching user (since email should be unique)
                             for (QueryDocumentSnapshot document : querySnapshot) {
-                                User user = document.toObject(User.class);
+                                @SuppressLint("RestrictedApi") User user = document.toObject(User.class);
 
                                 // Compare the entered password with the stored password
                                 if (user.getPassword().equals(enteredPassword)) {
                                     // Successful login
-                                    Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(sign_up.this, "Login successful!", Toast.LENGTH_SHORT).show();
 
                                     // You can now proceed to the next activity, e.g.
                                     // Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -68,16 +70,16 @@ public class sign_up extends AppCompatActivity {
 
                                 } else {
                                     // Password doesn't match
-                                    Toast.makeText(LoginActivity.this, "Incorrect password!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(sign_up.this, "Incorrect password!", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         } else {
                             // No user found with the entered email
-                            Toast.makeText(LoginActivity.this, "User not found!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(sign_up.this, "User not found!", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         // Error while fetching data
-                        Toast.makeText(LoginActivity.this, "Error fetching data: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(sign_up.this, "Error fetching data: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
