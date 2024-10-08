@@ -13,6 +13,24 @@
         android:theme="@style/Theme.Practice"
         tools:targetApi="31">
         <activity
+            android:name=".User_Activity1"
+            android:exported="false" />
+        <activity
+            android:name=".user_activity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".useractivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity_user"
+            android:exported="false" />
+        <activity
             android:name=".sign_up"
             android:exported="false" />
         <activity

@@ -1,9 +1,11 @@
 package com.example.practice;
 
 public class modeluser {
-    private String username;
-    private String email;
-    private String password;
+    public String username;
+    public String email;
+    public String password;
+
+    public String cpass;
 
     // Constructor
     public modeluser(String username, String email, String password) {
@@ -15,6 +17,9 @@ public class modeluser {
     // Getters
     public String getUsername() {
         return username;
+    }
+    public String getCpass() {
+        return cpass;
     }
 
     public String getEmail() {
